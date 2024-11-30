@@ -1,4 +1,5 @@
 import javafx.application.Application
+import javafx.geometry.Pos
 import javafx.scene.Scene
 import javafx.scene.control.Alert
 import javafx.scene.control.Button
@@ -15,7 +16,10 @@ class DeskApp : Application() {
 
     override fun start(stage: Stage) {
         val actionButton = Button("Insert File")
-        val viewButton = Button("View MST")
+        val viewButton = Button("View Minimum spanning tree")
+        val vbox =VBox(20.0)
+        vbox.alignment = Pos.CENTER  // center any element in VBox
+        vbox.children.addAll(actionButton,viewButton)
         outputArea.isEditable = false
 
         // Process file
@@ -27,24 +31,25 @@ class DeskApp : Application() {
             }
         }
 
-        // View button actions
+        //  actions when view mst is pressed
         viewButton.setOnAction {
             val mstEdges = graph.calculateMST()
             val outputText = buildString {
-                append("MST (Minimum Spanning Tree):\n")
+                append("Distance between the cities:\n")
                 var distance = 0
                 for (edge in mstEdges) {
-                    append("${edge.city1.name} -- ${edge.city2.name} == ${edge.distance}\n")
+                    append(" from ${edge.city1.name} to ${edge.city2.name} == ${edge.distance}\n")
                     distance += edge.distance
                 }
-                append("Total MST Distance: $distance")
+                append("Total MST Distance(Cable length): $distance")
             }
             outputArea.text = outputText
         }
 
         // Creating layout
-        val layout = VBox(10.0, Label("MST Generator"), actionButton, viewButton, outputArea)
-        val scene = Scene(layout, 600.0, 600.0)
+        val layout = VBox(20.0, Label("MST Generator"), actionButton, viewButton, outputArea)
+        layout.alignment = Pos.CENTER
+        val scene = Scene(layout, 400.0, 400.0)
 
         stage.scene = scene
         stage.title = "Telecoms App"
