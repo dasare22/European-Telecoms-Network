@@ -10,9 +10,6 @@ class NetGraph {
     private val cities = mutableSetOf<City>()
     private val edges = mutableListOf<Edge>()
 
-    fun add_a_City(city: City) {  //adding a city to graph
-        cities.add(city)
-    }
     fun add_an_Edge(edge: Edge) { // adding edge to graph
         edges.add(edge)   // distance
         cities.add(edge.city1)
