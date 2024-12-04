@@ -13,7 +13,7 @@ object KruskalAlgorithm {
             if (parent[city] != city) {
                 parent[city] = search(parent[city]!!) // recursive call path compression
             }
-            return parent[city]!!
+            return parent[city]!!   //non-null assertion,ensures value not null
         }
 
         // connect 2 cities
