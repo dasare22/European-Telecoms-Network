@@ -18,11 +18,11 @@ class DeskApp : Application() {
         val actionButton = Button("Insert File")
         val viewButton = Button("View Minimum spanning tree")
         val vbox =VBox(20.0)
-        vbox.alignment = Pos.CENTER  // center any element in VBox
+        vbox.alignment = Pos.CENTER  // Align elements to the center within VBox
         vbox.children.addAll(actionButton,viewButton)
         outputArea.isEditable = false
 
-        // Process file
+        // Handle file selection and processing
         actionButton.setOnAction {
             val file = FileChooser().showOpenDialog(stage)
             file?.let {
@@ -31,7 +31,7 @@ class DeskApp : Application() {
             }
         }
 
-        //  actions when view mst is pressed
+        // Generate and display the Minimum Spanning Tree (MST)
         viewButton.setOnAction {
             val mstEdges = graph.calculateMST()
             val outputText = buildString {
@@ -46,7 +46,7 @@ class DeskApp : Application() {
             outputArea.text = outputText
         }
 
-        // Creating layout
+        // Set up the main layout of the application
         val layout = VBox(20.0, Label("MST Generator"), actionButton, viewButton, outputArea)
         layout.alignment = Pos.CENTER
         val scene = Scene(layout, 400.0, 400.0)
@@ -60,10 +60,10 @@ class DeskApp : Application() {
         graph.clear()
         file.forEachLine { line ->
 
-//            println("Processing lines: $line")
+            // Split the line into parts based on commas and optional spaces
             val parts = line.split(Regex(",\\s*"))  // split by , and whitespace
-            if (line.isBlank()) return@forEachLine  //skips empty lines
-//            println("Parts after split: $parts") //debbuging
+            if (line.isBlank()) return@forEachLine  // Skip empty lines in the file
+            // Ensure the line has the correct number of parts
 
             if (parts.size == 3) {
                 val city1 = City(parts[0].trim())
