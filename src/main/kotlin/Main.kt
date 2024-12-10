@@ -14,6 +14,7 @@ class DeskApp : Application() {
     private val graph = NetGraph()
     private val outputArea = TextArea()
 
+    // set up Gui when application is launched.
     override fun start(stage: Stage) {
         val actionButton = Button("Insert File")
         val viewButton = Button("View Minimum spanning tree")
@@ -23,10 +24,10 @@ class DeskApp : Application() {
         outputArea.isEditable = false
 
         // Process file
-        actionButton.setOnAction {
+        actionButton.setOnAction { //actions performed by buttons
             val file = FileChooser().showOpenDialog(stage)
             file?.let {
-                loadNetGraphFromFile(it)
+                loadNetGraphFromFile(it) // if file selected, call loadnetgraohfromfile
                 outputArea.text = "File loaded successfully."
             }
         }
