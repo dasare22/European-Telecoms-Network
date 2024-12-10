@@ -10,11 +10,11 @@ import javafx.stage.FileChooser
 import javafx.stage.Stage
 import java.io.File
 
-class DeskApp : Application() {
+class DeskApp : Application(){//inheritance from Application(javafx tool)
     private val graph = NetGraph()
     private val outputArea = TextArea()
 
-    // set up Gui when application is launched.
+    // set up main windows(Gui) when application is launched.
     override fun start(stage: Stage) {
         val actionButton = Button("Insert File")
         val viewButton = Button("View Minimum spanning tree")
@@ -22,7 +22,6 @@ class DeskApp : Application() {
         vbox.alignment = Pos.CENTER  // center any element in VBox
         vbox.children.addAll(actionButton,viewButton)
         outputArea.isEditable = false
-
         // Process file
         actionButton.setOnAction { //actions performed by buttons
             val file = FileChooser().showOpenDialog(stage)
@@ -31,7 +30,6 @@ class DeskApp : Application() {
                 outputArea.text = "File loaded successfully."
             }
         }
-
         //  actions when view mst is pressed
         viewButton.setOnAction {
             val mstEdges = graph.calculateMST()
