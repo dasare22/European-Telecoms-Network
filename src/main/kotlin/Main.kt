@@ -120,20 +120,19 @@ class DeskApp : Application() {
         file.readLines().forEachIndexed { lineNumber, line ->
             if (line.isBlank()) return@forEachIndexed
 
-            val parts = line.split(Regex(",\\s*"))
-            if (parts.size != 3) {
+            val parts = line.split(Regex(",\\s*")) // split with "," or whitespace
+            if (parts.size != 3) { //line split in 3 part: Name of city,destination,distance
                 errors.add("Line ${lineNumber + 1}: Invalid format - $line")
-                return@forEachIndexed
+                return@forEachIndexed // skips further processing of the file when 1 line is invalid
             }
             val city1 = City(parts[0].trim())
             val city2 = City(parts[1].trim())
             val distance = parts[2].trim().toIntOrNull()
 
-            if (distance == null || distance < 0) {
+            if (distance == null || distance < 0) {  // distance cannot be less than 0, return error if so
                 errors.add("Line ${lineNumber + 1}: Invalid distance value - ${parts[2].trim()}")
                 return@forEachIndexed
             }
-
             graph.addEdge(Edge(city1, city2, distance))
         }
         return errors
