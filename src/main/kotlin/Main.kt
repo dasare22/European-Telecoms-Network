@@ -11,6 +11,8 @@ import javafx.stage.FileChooser
 import javafx.stage.Stage
 import java.io.File
 
+
+// This class inherits Application from JavaFx
 class DeskApp : Application() {
     private val graph = NetGraph()
     private val outputArea = TextArea()
@@ -18,6 +20,7 @@ class DeskApp : Application() {
     private val statusLabel = Label("Status: Waiting for file input...")
     private val progressBar = ProgressBar(0.0)
 
+    //stage to present the Gui including buttons,output area
     override fun start(stage: Stage) {
         val actionButton = Button("Insert File")
         val viewButton = Button("View Minimum Spanning Tree")
@@ -122,7 +125,6 @@ class DeskApp : Application() {
                 errors.add("Line ${lineNumber + 1}: Invalid format - $line")
                 return@forEachIndexed
             }
-
             val city1 = City(parts[0].trim())
             val city2 = City(parts[1].trim())
             val distance = parts[2].trim().toIntOrNull()
