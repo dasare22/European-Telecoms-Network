@@ -54,7 +54,7 @@ class DeskApp : Application(){//inheritance from Application(javafx tool)
         stage.title = "Telecoms App"
         stage.show()
     }
-
+// Process the input file
     private fun loadNetGraphFromFile(file: File) {
         graph.clear()
         file.forEachLine { line ->
