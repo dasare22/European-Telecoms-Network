@@ -46,9 +46,9 @@ class DeskApp : Application() {
             errorArea // Error area will be shown only when necessary
         )
 
-        // File loading action
+        // File loading action - error handling
         actionButton.setOnAction {
-            val file = FileChooser().showOpenDialog(stage)
+            val file = FileChooser().showOpenDialog(stage) // ensures dialog window stays in stage
             if (file != null) {
                 progressBar.isVisible = true
                 statusLabel.text = "Loading file..."
