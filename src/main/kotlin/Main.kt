@@ -32,7 +32,7 @@ class DeskApp : Application() {
         errorArea.isVisible = false // Hide the error area initially
         progressBar.isVisible = false
 
-        val vbox = VBox(15.0)
+        val vbox = VBox(15.0) //manages layout, 15(space between elements)
         vbox.alignment = Pos.CENTER
         vbox.children.addAll(
             Label("MST Generator"),
@@ -85,8 +85,8 @@ class DeskApp : Application() {
             }
 
             val mstEdges = graph.calculateMST()
-            val outputText = buildString {
-                append("Minimum Spanning Tree (MST):\n\n")
+            val outputText = buildString { //function to construct formatted output for the MST(london->Paris: 4)
+                append("Minimum Spanning Tree (MST):\n\n") // keep record of all distances and display total Mst in outputArea
                 var totalDistance = 0
                 for (edge in mstEdges) {
                     append("From ${edge.city1.name} to ${edge.city2.name}: ${edge.distance} km\n")
@@ -123,7 +123,7 @@ class DeskApp : Application() {
             val parts = line.split(Regex(",\\s*")) // split with "," or whitespace
             if (parts.size != 3) { //line split in 3 part: Name of city,destination,distance
                 errors.add("Line ${lineNumber + 1}: Invalid format - $line")
-                return@forEachIndexed // skips further processing of the file when 1 line is invalid
+                return@forEachIndexed // skips further processing of the line to ensure graph correctness
             }
             val city1 = City(parts[0].trim())
             val city2 = City(parts[1].trim())
