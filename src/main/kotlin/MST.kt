@@ -2,7 +2,7 @@
 object KruskalAlgorithm {
     fun calculateMST(graph: NetGraph): List<Edge> {
         val MSTEdges = mutableListOf<Edge>()
-        val sortedEdges = graph.getEdges().sortedBy { it.distance }
+        val sortedEdges = graph.getEdges().sortedBy { it.distance } // kotlin function to sort edges by distance
         val parent = mutableMapOf<City, City>()
 
         // Initialize each city to be its own parent in the union find structure
