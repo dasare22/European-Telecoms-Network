@@ -95,7 +95,7 @@ class DeskApp : Application() {
                 append("\nTotal MST Distance (Cable Length): $totalDistance km")
             }
             outputArea.text = outputText
-            statusLabel.text = "Status: MST calculated successfully."
+            statusLabel.text = "Status: MST calculated successfully!."
         }
 
         // Save errors action
